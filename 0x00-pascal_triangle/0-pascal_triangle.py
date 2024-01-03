@@ -1,7 +1,6 @@
 #!/usr/bin/python3
-"""
-0: Pascal's Triangle.
-"""
+"""0. Pascal's Triangle"""
+
 
 def pascal_triangle(n):
     """Creates and returns a pascal triangle of height n as 2D list.
@@ -18,7 +17,7 @@ def pascal_triangle(n):
     triangle = [[1]]
     for i in range(1, n):
         row = [0, *triangle[i - 1], 0]
-        triangle.append( [
+        triangle.append([
             a + b
             for a, b in zip(row[:-1], row[1:])
         ])
