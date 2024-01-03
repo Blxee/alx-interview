@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""0. Pascal's Triangle"""
+"""
+0: Pascal's Triangle.
+"""
 
 def pascal_triangle(n):
     """Creates and returns a pascal triangle of height n as 2D list.
