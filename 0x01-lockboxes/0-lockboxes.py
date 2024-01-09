@@ -2,7 +2,7 @@
 """0. Lockboxes"""
 
 
-def canUnlockAll(boxes: list[list[int]]) -> bool:
+def canUnlockAll(boxes):
     """determines if all the boxes can be opened.
 
     Args:
