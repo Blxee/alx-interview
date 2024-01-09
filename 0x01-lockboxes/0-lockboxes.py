@@ -1,6 +1,7 @@
 #!/urs/bin/python3
 """0. Lockboxes"""
 
+
 def canUnlockAll(boxes: list[list[int]]) -> bool:
     """determines if all the boxes can be opened.
 
