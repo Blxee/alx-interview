@@ -10,7 +10,7 @@ def minOperations(n):
     Returns:
         int: minimum number of operations, or 0.
     """
-    if n == 1:
+    if n <= 1:
         return 0
     op = 2
     while n % op != 0:
