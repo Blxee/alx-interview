@@ -16,7 +16,7 @@ if __name__ == "__main__":
     total_size = 0
 
     def show_info():
-        """Halndler for the interrupt (<C>-C) key."""
+        """Prints information about logs every 10 lines"""
         print('File size:', total_size)
         for code, n in status_codes.items():
             if n:
@@ -36,5 +36,7 @@ if __name__ == "__main__":
             total_size += size
             if i % 10 == 0:
                 show_info()
+    except Exception:
+        pass
     finally:
         show_info()
