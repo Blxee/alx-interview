@@ -18,7 +18,8 @@ if __name__ == "__main__":
     def show_info():
         """Prints information about logs every 10 lines"""
         print('File size:', total_size)
-        for code, n in status_codes.items():
+        for code in sorted(status_codes.keys()):
+            n = status_codes[code]
             if n:
                 print(f'{code}: {n}')
 
