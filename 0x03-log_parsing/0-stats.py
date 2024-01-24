@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 """0. Log parsing"""
 import re
-import signal
 import sys
 
 
 if __name__ == "__main__":
-    pattern = re.compile(r'.+ - \[.+\] "GET /projects/260 HTTP/1.1" (?P<code>.+) (?P<size>\d+)')
+    pattern = re.compile(
+        r'.+ - \[.+\] "GET /projects/260 HTTP/1.1" (?P<code>.+) (?P<size>\d+)'
+    )
 
     status_codes = {
         code: 0
@@ -14,19 +15,19 @@ if __name__ == "__main__":
     }
     total_size = 0
 
-    def handler(sig=None, frame=None):
+    def show_info():
         """Halndler for the interrupt (<C>-C) key."""
         print('File size:', total_size)
         for code, n in status_codes.items():
             if n:
                 print(f'{code}: {n}')
 
-    signal.signal(signal.SIGINT, handler)
-
-    i = 0
-    for line in sys.stdin:
-        match = re.match(pattern, line)
-        if match:
+    try:
+        i = 0
+        for line in sys.stdin:
+            match = re.match(pattern, line)
+            if not match:
+                continue
             i += 1
             code = int(match.group('code'))
             size = int(match.group('size'))
@@ -34,4 +35,6 @@ if __name__ == "__main__":
                 status_codes[code] += 1
             total_size += size
             if i % 10 == 0:
-                handler()
+                show_info()
+    finally:
+        show_info()
