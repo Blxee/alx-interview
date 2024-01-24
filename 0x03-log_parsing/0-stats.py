@@ -6,7 +6,7 @@ import sys
 
 
 if __name__ == "__main__":
-    pattern = re.compile(r'(?P<ip>.+) - \[(?P<date>.+)\] "GET /projects/260 HTTP/1.1" (?P<code>.+) (?P<size>\d+)')
+    pattern = re.compile(r'.+ - \[.+\] "GET /projects/260 HTTP/1.1" (?P<code>.+) (?P<size>\d+)')
 
     status_codes = {
         code: 0
@@ -25,9 +25,9 @@ if __name__ == "__main__":
 
     i = 0
     for line in sys.stdin:
-        i += 1
         match = re.match(pattern, line)
         if match:
+            i += 1
             code = int(match.group('code'))
             size = int(match.group('size'))
             if code in status_codes:
