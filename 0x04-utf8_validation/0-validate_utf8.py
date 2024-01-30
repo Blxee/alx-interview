@@ -11,9 +11,8 @@ def validUTF8(data):
     Returns:
         True if data is a valid UTF-8 encoding, else return False.
     """
-    if len(data) == 0:
+    try:
+        bytes(data).decode()
+        return True
+    except:
         return False
-    for byte in data:
-        if not (0 <= byte <= 255):
-            return False
-    return True
