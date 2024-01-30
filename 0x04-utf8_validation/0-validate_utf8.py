@@ -11,7 +11,6 @@ def validUTF8(data):
     Returns:
         True if data is a valid UTF-8 encoding, else return False.
     """
-    skip
     for i, byte in enumerate(data):
         if not (0 <= byte <= 255):
             return False
