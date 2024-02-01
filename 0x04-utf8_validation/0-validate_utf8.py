@@ -28,4 +28,4 @@ def validUTF8(data):
             length -= 1
         else:
             return False
-    return True
+    return (length == 0)
