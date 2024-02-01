@@ -13,11 +13,9 @@ def validUTF8(data):
     """
     length = 0
     for byte in data:
-        if not (0 <= byte <= 255):
-            return False
         if length == 0:
             if byte >> 7 == 0b0:
-                length = 0
+                continue
             elif byte >> 5 == 0b110:
                 length = 1
             elif byte >> 4 == 0b1110:
