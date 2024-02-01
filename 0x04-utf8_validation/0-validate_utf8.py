@@ -13,6 +13,8 @@ def validUTF8(data):
     """
     length = 0
     for byte in data:
+        if not (0 <= byte <= 255):
+            byte %= 256
         if length == 0:
             if byte >> 7 == 0b0:
                 continue
