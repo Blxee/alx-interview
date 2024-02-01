@@ -12,12 +12,12 @@ def validUTF8(data):
         True if data is a valid UTF-8 encoding, else return False.
     """
     length = 0
-    for i, byte in enumerate(data):
+    for byte in data:
         if not (0 <= byte <= 255):
             return False
         if length == 0:
             if byte >> 7 == 0b0:
-                length = 1
+                continue
             elif byte >> 5 == 0b110:
                 length = 2
             elif byte >> 4 == 0b1110:
@@ -28,4 +28,6 @@ def validUTF8(data):
                 return False
         elif byte >> 6 == 0b10:
             length -= 1
+        else:
+            return False
     return True
