@@ -17,13 +17,13 @@ def validUTF8(data):
             return False
         if length == 0:
             if byte >> 7 == 0b0:
-                continue
+                length = 0
             elif byte >> 5 == 0b110:
-                length = 2
+                length = 1
             elif byte >> 4 == 0b1110:
-                length = 3
+                length = 2
             elif byte >> 3 == 0b11110:
-                length = 4
+                length = 3
             else:
                 return False
         elif byte >> 6 == 0b10:
