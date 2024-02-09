@@ -24,7 +24,6 @@ def move_queen(queen: list[int],
             return False
         else:
             board[x][y] = queen
-            print('filling', (x, y))
     elif action == REMOVE: 
         if type(board[x][y]) != list:
             return False
@@ -41,7 +40,6 @@ def move_queen(queen: list[int],
             if i == x or j == y or abs(x - i) == abs(y - j):
                 # if cell is not empty, break.
                 if action == ADD and type(board[i][j]) == list:
-                    print((x, y), (i, j), ':', board[i][j])
                     ret = False
                     board[x][y] = 0
                     break
@@ -54,13 +52,12 @@ def move_queen(queen: list[int],
         for i, j in stack:
             board[i][j] -= action
     # return whether action has succeded
-    print(ret)
     return ret
 
 
 def n_queens(n: int) -> list[list[list[int]]]:
     # make a 2D array of n * n init to 0.
-    board = [[0] * n] * n
+    board = [[0 for _ in range(n)] for _ in range(n)]
     solution_list = []
     # add new new solutions until there are none.
     while 1:
