@@ -3,7 +3,7 @@
 from sys import argv
 
 
-def can_move(pos1: list[int], pos2: list[int]) -> bool:
+def can_move(pos1, pos2):
     """Determines whether a queen is a target of another."""
     x1, y1 = pos1
     x2, y2 = pos2
@@ -13,7 +13,7 @@ def can_move(pos1: list[int], pos2: list[int]) -> bool:
 stack = []
 
 
-def n_queens(n: int, queens: list[list[int]] = []) -> None:
+def n_queens(n, queens=[]):
     """Prints all possiple solutions of n-queens problem."""
     for x in range(n):
         for y in range(n):
