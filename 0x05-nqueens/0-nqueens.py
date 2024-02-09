@@ -17,18 +17,18 @@ def n_queens(n, queens=[]):
     """Prints all possiple solutions of n-queens problem."""
     for x in range(n):
         for y in range(n):
-            if [x, y] in queens:
+            if (x, y) in queens:
                 continue
-            for qx, qy in queens:
-                if can_move([qx, qy], [x, y]):
+            for queen in queens:
+                if can_move(queen, (x, y)):
                     break
             else:
-                new_queens = queens + [[x, y]]
+                new_queens = queens + [(x, y)]
                 if len(new_queens) == n:
-                    s = set([tuple(q) for q in new_queens])
-                    if s not in stack:
-                        print(new_queens)
-                        stack.append(s)
+                    solution = set(new_queens)
+                    if solution not in stack:
+                        print([list(q) for q in new_queens])
+                        stack.append(solution)
                 else:
                     n_queens(n, new_queens)
 
