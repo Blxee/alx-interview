@@ -12,7 +12,7 @@ def can_move(queens, pos):
     return True
 
 
-def n_queens(x, n=0, queens=set()):
+def n_queens(x, n, queens):
     """Prints all possiple solutions of n-queens problem."""
     if x == n:
         return print(list(queens))
