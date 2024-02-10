@@ -10,27 +10,27 @@ def can_move(pos1, pos2):
     return x1 == x2 or y1 == y2 or abs(x1 - x2) == abs(y1 - y2)
 
 
-stack = []
+stack = set()
+board = ()
 
 
-def n_queens(n, queens=[]):
+def n_queens(n, queens=set()):
     """Prints all possiple solutions of n-queens problem."""
-    for x in range(n):
-        for y in range(n):
-            if (x, y) in queens:
-                continue
-            for queen in queens:
-                if can_move(queen, (x, y)):
-                    break
+    for pos in board:
+        if pos in queens:
+            continue
+        for queen in queens:
+            if can_move(queen, pos):
+                break
+        else:
+            new_queens = queens | {pos}
+            if len(new_queens) == n:
+                solution = sum(map(hash, new_queens))
+                if solution not in stack:
+                    print([list(q) for q in new_queens])
+                    stack.add(solution)
             else:
-                new_queens = queens + [(x, y)]
-                if len(new_queens) == n:
-                    solution = set(new_queens)
-                    if solution not in stack:
-                        print([list(q) for q in new_queens])
-                        stack.append(solution)
-                else:
-                    n_queens(n, new_queens)
+                n_queens(n, new_queens)
 
 
 if __name__ == '__main__':
@@ -50,4 +50,5 @@ if __name__ == '__main__':
         print('N must be at least 4')
         exit(1)
 
+    board = tuple((x, y) for x in range(n) for y in range(n))
     n_queens(n)
