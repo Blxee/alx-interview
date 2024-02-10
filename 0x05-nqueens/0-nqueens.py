@@ -3,34 +3,23 @@
 from sys import argv
 
 
-def can_move(pos1, pos2):
-    """Determines whether a queen is a target of another."""
-    x1, y1 = pos1
-    x2, y2 = pos2
-    return x1 == x2 or y1 == y2 or abs(x1 - x2) == abs(y1 - y2)
+def can_move(queens, pos):
+    """Determines whether a queen is safe to move to a position."""
+    x1, y1 = pos
+    for x2, y2 in queens[:x1]:
+        if x1 == x2 or y1 == y2 or abs(x1 - x2) == abs(y1 - y2):
+            return False
+    return True
 
 
-stack = set()
-board = ()
-
-
-def n_queens(n, queens=set()):
+def n_queens(x, n=0, queens=set()):
     """Prints all possiple solutions of n-queens problem."""
-    for pos in board:
-        if pos in queens:
-            continue
-        for queen in queens:
-            if can_move(queen, pos):
-                break
-        else:
-            new_queens = queens | {pos}
-            if len(new_queens) == n:
-                solution = sum(map(hash, new_queens))
-                if solution not in stack:
-                    print([list(q) for q in new_queens])
-                    stack.add(solution)
-            else:
-                n_queens(n, new_queens)
+    if x == n:
+        return print(list(queens))
+    for y in range(n):
+        if can_move(queens, (x, y)):
+            queens[x][0], queens[x][1] = (x, y)
+            n_queens(x + 1, n, queens)
 
 
 if __name__ == '__main__':
@@ -50,5 +39,5 @@ if __name__ == '__main__':
         print('N must be at least 4')
         exit(1)
 
-    board = tuple((x, y) for x in range(n) for y in range(n))
-    n_queens(n)
+    queens = tuple([0, 0] for _ in range(n))
+    n_queens(0, n, queens)
