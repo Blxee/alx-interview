@@ -4,7 +4,7 @@
 
 def rotate_2d_matrix(matrix):
     """Roatates 2d matrix in-place."""
-    original = matrix.copy()
+    original = [row.copy() for row in matrix]
     width, height = len(matrix[0]), len(matrix)
     for x in range(width):
         for y in range(height):
