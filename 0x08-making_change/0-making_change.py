@@ -4,8 +4,8 @@
 
 def makeChange(coins, total):
     """Solution for coin change problem"""
-    coins.sort(reverse=True);
-    count = 0;
+    coins.sort(reverse=True)
+    count = 0
     while total > 0:
         if len(coins) == 0:
             return -1
@@ -15,4 +15,3 @@ def makeChange(coins, total):
         total -= coins[0]
         count += 1
     return count
-
