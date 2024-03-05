@@ -3,6 +3,7 @@
 
 
 def island_perimeter(grid):
+    """Calculates the perimeter of the island."""
     perimeter = 0
     for x in range(len(grid)):
         for y in range(len(grid[0])):
