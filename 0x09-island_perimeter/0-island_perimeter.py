@@ -1,9 +1,17 @@
 #!/usr/bin/python3
-"""Island perimeter solution module."""
+"""
+Island perimeter solution module.
+"""
 
 
 def island_perimeter(grid):
-    """Calculates the perimeter of the island."""
+    """Calculates the perimeter of the island.
+
+    Args:
+        grid (list[list[int]]): the island representation.
+    Returns:
+        int: the perimeter of the island.
+    """
     perimeter = 0
     for x in range(len(grid)):
         for y in range(len(grid[0])):
