@@ -27,6 +27,6 @@ def sieve_of_eratosthenes(num):
             continue
         for j in range(i + lst[i], len(lst), lst[i]):
             lst[j] = 0
-        if i ** 2 >= num:
+        if lst[i] ** 2 >= num:
             break
     return [i for i in lst if i != 0][1:]
