@@ -5,7 +5,7 @@
 def isWinner(x, nums):
     """Determines the winner in Primegame."""
     winner = 0
-    for num in nums:
+    for num in nums[:x]:
         primes = sieve_of_eratosthenes(num)
         if len(primes) % 2 == 0:
             winner += 1
