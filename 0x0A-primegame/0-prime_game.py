@@ -4,12 +4,19 @@
 
 def isWinner(x, nums):
     """Determines the winner in Primegame."""
+    winner = 0
     for num in nums:
         primes = sieve_of_eratosthenes(num)
         if len(primes) % 2 == 0:
-            return 'Maria'
+            winner += 1
         else:
-            return 'Ben'
+            winner -= 1
+    if winner > 0:
+        return 'Ben'
+    elif winner < 0:
+        return 'Maria'
+    else:
+        return None
 
 
 def sieve_of_eratosthenes(num):
