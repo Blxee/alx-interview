@@ -7,9 +7,9 @@ def isWinner(x, nums):
     for num in nums:
         primes = sieve_of_eratosthenes(num)
         if len(primes) % 2 == 0:
-            return 'Ben'
-        else:
             return 'Maria'
+        else:
+            return 'Ben'
 
 
 def sieve_of_eratosthenes(num):
